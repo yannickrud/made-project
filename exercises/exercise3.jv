@@ -76,9 +76,9 @@ pipeline TrainPipeline {
         columns: [
             "year" oftype integer,
             "month" oftype Month,
-            "good_id" oftype GoodsId,
-            "good_name" oftype text,
-            "good_source" oftype text,
+            "goods_id" oftype GoodsId,
+            "goods_name" oftype text,
+            "goods_source" oftype text,
             "abroad" oftype PositiveInt,
             "total" oftype PositiveInt,
         ];
