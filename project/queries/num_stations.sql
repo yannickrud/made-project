@@ -1,0 +1,3 @@
+-- SQLite
+SELECT COUNT(DISTINCT(STATIONS_ID))
+FROM "weather_phenomena"
