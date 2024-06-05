@@ -23,8 +23,6 @@ def get_zip_files(url: str) -> tuple[pd.DataFrame, list[bytes]]:
 
 		if not link.endswith('.zip'):
 			continue
-		else:
-			continue
 
 		response = requests.get(url + link)
 		zip_files.append(response.content)
