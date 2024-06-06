@@ -8,7 +8,7 @@ import re
 
 from sqlalchemy import create_engine
 
-def get_zip_files(url: str) -> tuple[pd.DataFrame, list[bytes]]:
+def get_data_files(url: str) -> tuple[pd.DataFrame, list[bytes]]:
 	zip_files = []
 	r = requests.get(url)
 
@@ -100,9 +100,9 @@ def transform_meta_data(df):
 if __name__ == '__main__':
 	base_url = 'https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/annual/weather_phenomena/historical/'
 
-	extract_meta_data_from_link(base_url, 'wetter_jahreswerte_Beschreibung_Stationen.txt')
+	extract_meta_data_from_link(base_url, "wetter_jahreswerte_Beschreibung_Stationen.txt")
 	# extract the data and convert to a pandas dataframe
-	meta_data, zip_files = get_zip_files(base_url)
+	meta_data, zip_files = get_data_files(base_url)
 	
 	df = extract_data_from_zip(zip_files)
 
