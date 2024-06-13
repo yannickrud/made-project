@@ -5,6 +5,7 @@ import pandas as pd
 from io import BytesIO, StringIO
 from tqdm import tqdm
 import re
+import os
 
 from sqlalchemy import create_engine
 
@@ -15,8 +16,9 @@ def get_data_files(url: str) -> tuple[pd.DataFrame, list[bytes]]:
 
 	webpage = html.fromstring(r.content)
 	links = webpage.xpath('//a/@href')
+	for link in tqdm(links):
 
-	for i, link in enumerate(tqdm(links)):
+		
 		if link.endswith('.txt'):
 			meta_data = extract_meta_data_from_link(url, link)
 			continue
@@ -84,7 +86,7 @@ def transform_data(df: pd.DataFrame) -> pd.DataFrame:
 	time_related_columns = ['MESS_DATUM_BEGINN', 'MESS_DATUM_ENDE']
 	df[time_related_columns] = df[time_related_columns].apply(pd.to_datetime, format="%Y%m%d")
 
-	df.drop('eor', inplace=True)
+	df.drop(columns='eor', inplace=True)
 	return df
 
 def transform_meta_data(df):
@@ -95,11 +97,7 @@ def transform_meta_data(df):
 	df[time_related_columns] = df[time_related_columns].apply(pd.to_datetime, format="%Y%m%d")
 	return df
 
-
-
-if __name__ == '__main__':
-	base_url = 'https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/annual/weather_phenomena/historical/'
-
+def run_pipeline(base_url):
 	extract_meta_data_from_link(base_url, "wetter_jahreswerte_Beschreibung_Stationen.txt")
 	# extract the data and convert to a pandas dataframe
 	meta_data, zip_files = get_data_files(base_url)
@@ -110,11 +108,17 @@ if __name__ == '__main__':
 	df = transform_data(df)
 
 	# create database
-	engine = create_engine('sqlite:///data/project.sqlite', echo=False)
+	data_base_path = './data/'
+	os.makedirs(data_base_path, exist_ok=True)
+
+	engine = create_engine(f'sqlite:///data/project.sqlite', echo=False)
 	# writes the meta data to table description and extracted data to table 'weather_phenomena'
 	meta_data.to_sql('description', engine, if_exists='replace', index=False)
 	df.to_sql('weather_phenomena', engine, if_exists='replace', index=False)
 
+if __name__ == '__main__':
+	base_url = 'https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/annual/weather_phenomena/historical/'
+	run_pipeline(base_url)
 
 	exit(0)
 
