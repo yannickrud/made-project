@@ -13,7 +13,6 @@ def get_data_files(url: str) -> tuple[pd.DataFrame, list[bytes]]:
 	zip_files = []
 	r = requests.get(url)
 
-
 	webpage = html.fromstring(r.content)
 	links = webpage.xpath('//a/@href')
 	for link in tqdm(links):
