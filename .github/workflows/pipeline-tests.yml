@@ -17,9 +17,8 @@ jobs:
 
       - name: Change permissions on tests.sh
         run: |
-          cd project
-          chmod +x tests.sh
+          chmod +x ./project/tests.sh
       
       - name: Test pipeline
         run:
-          ls
+          ./project/tests.sh
