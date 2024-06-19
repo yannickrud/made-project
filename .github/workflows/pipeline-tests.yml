@@ -12,34 +12,15 @@ jobs:
   test-pipeline:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v3
-        with:
-          path: main
 
-      - name: Checkout exercise feedback
-        uses: actions/checkout@v3
-        with:
-          repository: jvalue/made-exercise-feedback
-          path: grading
-
-      - name: Set up Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: "lts/*"
-
-      # Install jayvee
-      - name: Set up Jayvee
+      - name: Change permissions on tests.sh
         run: |
-          ./grading/ci/setup_jayvee.sh
-
-      # Install python
-      - name: Set up Python 3.11
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.11
+          cd project
+          chmod +x tests.sh
       
       - name: Test pipeline
         run:
           ls main
-          ./main/project/tests.sh
+          ./project/tests.sh
