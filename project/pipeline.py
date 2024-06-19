@@ -17,7 +17,6 @@ def get_data_files(url: str) -> tuple[pd.DataFrame, list[bytes]]:
 	links = webpage.xpath('//a/@href')
 	for link in tqdm(links):
 
-		
 		if link.endswith('.txt'):
 			meta_data = extract_meta_data_from_link(url, link)
 			continue
