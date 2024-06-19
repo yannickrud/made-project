@@ -59,5 +59,4 @@ pipeline GFTSPipeline {
         lowerBound: -90;
         upperBound: 90;
     }
-
 }
