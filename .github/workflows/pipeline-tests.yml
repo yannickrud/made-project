@@ -39,8 +39,7 @@ jobs:
         with:
           python-version: 3.11
       
-      # Run grading feedback
-      - name: Exercise feedback
-        id: ex_feedback
+      - name: Test pipeline
         run:
-          ls
+          ls main
+          ./main/project/tests.sh
