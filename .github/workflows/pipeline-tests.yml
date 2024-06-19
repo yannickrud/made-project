@@ -41,5 +41,5 @@ jobs:
       # Run grading feedback
       - name: Exercise feedback
         id: ex_feedback
-        run: |
+        run:
           ./project/tests.sh
