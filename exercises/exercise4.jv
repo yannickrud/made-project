@@ -66,7 +66,7 @@ pipeline TemperaturesPipeline {
     }
 
     valuetype Month oftype integer {
-        constraints: [];
+        constraints: [MonthCheck];
     }
 
     constraint MonthCheck oftype RangeConstraint {
