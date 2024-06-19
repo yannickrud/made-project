@@ -22,5 +22,5 @@ jobs:
       
       - name: Test pipeline
         run:
-          ls main
+          ls
           ./project/tests.sh
