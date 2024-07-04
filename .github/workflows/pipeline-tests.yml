@@ -1,12 +1,12 @@
 name: Project Tests
 
-on: workflow_dispatch
-
-  # push:
-  #   branches:
-  #     - main
-  #   paths:
-  #     - project/**
+# on: workflow_dispatch
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - project/**
 
 jobs:
   test-pipeline:
@@ -14,6 +14,16 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+      
+      - name: Install python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r project/requirements.txt
 
       - name: Change permissions on tests.sh
         run: |
