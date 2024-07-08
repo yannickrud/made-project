@@ -4,16 +4,11 @@
 
 ## Main Question
 
-<!-- Does climate change has an impact on holiday destinations of citizens of the european union? -->
-
-Change of extreme weather observations over time?
+How have the number and types of weather phenomena in Germany changed over time?
 
 ## Description
 
-<!-- Higher co2 emission when on holiday.
-Countries that rely on tourism.
-
-Not quite sure what side to focus on. Depends on the available data -->
+The project attempts to answer this question by extracting and analyzing data on weather phenomena provided by the German Weather Service (DWD).
 
 ## Datasources
 https://www.ecad.eu/
@@ -24,4 +19,6 @@ https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/dai
 1. Search for data
 2. Extract the data
 3. Explore the data
-4. Conclusion
+4. Create data report
+5. Create the final report
+6. Clean up repo
