@@ -32,5 +32,5 @@ The following image shows that the number of weather phenomena increases over ti
 ![Overall occurences of weather phenomena per year](project/assets/overall.png "Overall occurences of weather phenomena per year")
 
 ## Files
-[Data report](./project/data-report.pdf)
+[Data report](./project/data-report.pdf)  
 [Final report](./project/analysis-report.pdf)
